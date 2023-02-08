@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_video_call"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:orientation="vertical" />
+
+    <ImageButton
+        android:id="@+id/btn_mute_audio"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="50dp"
+        android:src="@drawable/baseline_mic_none_24"
+        android:backgroundTint="@color/material_dynamic_neutral95"
+        android:contentDescription="@string/mute_audio" />
+
+    <ImageButton
+        android:id="@+id/btn_leave_room"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="50dp"
+        android:src="@drawable/baseline_exit_to_app_24"
+        android:backgroundTint="@color/material_dynamic_neutral95"
+        android:contentDescription="@string/btn_leave_room" />
+
+    <ImageButton
+        android:id="@+id/btn_mute_video"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="50dp"
+        android:src="@drawable/baseline_videocam_24"
+        android:backgroundTint="@color/material_dynamic_neutral95"
+        android:contentDescription="@string/mute_video" />
+
+</RelativeLayout>
