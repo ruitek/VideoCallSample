@@ -55,6 +55,13 @@ public class VideoFragment extends Fragment {
     private ImageButton mBtnMuteVideo;
     private ImageButton mBtnLeaveRoom;
 
+    private ImageButton mBtnFlashToggle;
+
+    private ImageButton mBtnZoomIn;
+
+    private ImageButton mBtnZoomOut;
+
+
     public VideoFragment() {
         // Required empty public constructor
     }
@@ -121,6 +128,11 @@ public class VideoFragment extends Fragment {
         mBtnMuteVideo = (ImageButton) videoView.findViewById(R.id.btn_mute_video);
         mBtnLeaveRoom = (ImageButton) videoView.findViewById(R.id.btn_leave_room);
 
+        mBtnFlashToggle = (ImageButton) videoView.findViewById(R.id.btn_flash);
+        mBtnZoomIn = (ImageButton) videoView.findViewById(R.id.btn_zoom_in);
+        mBtnZoomOut = (ImageButton) videoView.findViewById(R.id.btn_zoom_out);
+
+
         if (savedInstanceState != null) {
             mIsAudioMuted = savedInstanceState.getBoolean(BUNDLE_AUDIO_MUTED);
             mIsVideoMuted = savedInstanceState.getBoolean(BUNDLE_VIDEO_MUTED);
@@ -149,6 +161,20 @@ public class VideoFragment extends Fragment {
         });
 
         mBtnLeaveRoom.setOnClickListener(v -> ((MainActivity)requireActivity()).leaveRoom());
+
+        mBtnZoomIn.setOnClickListener(v -> {
+            ((MainActivity)requireActivity()).zoomIn();
+        });
+
+        mBtnZoomOut.setOnClickListener(v -> {
+            ((MainActivity)requireActivity()).zoomOut();
+        });
+
+        mBtnFlashToggle.setOnClickListener(v -> {
+            ((MainActivity)requireActivity()).toggleFlash();
+
+            mUIHandler.post(this::setFlashButtonLabel);
+        });
 
         return videoView;
     }
@@ -244,6 +270,14 @@ public class VideoFragment extends Fragment {
             mBtnMuteVideo.setImageDrawable(getResources().getDrawable(R.drawable.baseline_videocam_off_24));
         } else {
             mBtnMuteVideo.setImageDrawable(getResources().getDrawable(R.drawable.baseline_videocam_24));
+        }
+    }
+
+    private void setFlashButtonLabel() {
+        if(((MainActivity)requireActivity()).getFlashStatus()) {
+            mBtnFlashToggle.setImageDrawable(getResources().getDrawable(R.drawable.baseline_flash_off_24));
+        } else {
+            mBtnFlashToggle.setImageDrawable(getResources().getDrawable(R.drawable.baseline_flash_on_24));
         }
     }
 

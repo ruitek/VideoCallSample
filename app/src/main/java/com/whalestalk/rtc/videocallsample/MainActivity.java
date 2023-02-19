@@ -64,6 +64,10 @@ public class MainActivity extends AppCompatActivity implements WhalesTalkObserve
 
     private int mCurrentCamIdx;
 
+    private int mZoomLevel;
+
+    private boolean mTorchOn;
+
 
     public MainActivity() {
         super(R.layout.activity_main);
@@ -152,6 +156,9 @@ public class MainActivity extends AppCompatActivity implements WhalesTalkObserve
         mLocalVideoId = mWhalesTalkClient.addVideo(0, mLocalRequestDimension, mLocalRequestFPS, false);
         Log.d(TAG, "local video id: " + mLocalVideoId);
 
+        mZoomLevel = 1;
+
+        mTorchOn = false;
         // join room
         mRoomJoinState = WhalesTalkDefines.RoomJoinState.NEW.getValue();
         int ret = mWhalesTalkClient.joinRoomWithSecret(mSecret, mRoomName, mUserName, "");
@@ -168,6 +175,35 @@ public class MainActivity extends AppCompatActivity implements WhalesTalkObserve
 
     public void removeVideoMedia(String mediaId) {
         mWhalesTalkClient.removeVideoMedia(mediaId);
+    }
+
+    public void zoomIn() {
+        int level = mZoomLevel + 1;
+        int ret = mWhalesTalkClient.setVideoZoomLevel(mLocalVideoId, level);
+        if(ret == 0) {
+            mZoomLevel = level;
+        }
+    }
+
+    public void zoomOut() {
+        int level = mZoomLevel - 1;
+        int ret = mWhalesTalkClient.setVideoZoomLevel(mLocalVideoId, level);
+        if(ret == 0) {
+            mZoomLevel = level;
+        }
+    }
+
+    public void toggleFlash() {
+        boolean flag = !mTorchOn;
+
+        int ret = mWhalesTalkClient.setFlashTorchOn(flag);
+        if(ret == 0) {
+            mTorchOn = flag;
+        }
+    }
+
+    public boolean getFlashStatus() {
+        return mTorchOn;
     }
 
     public void leaveRoom() {

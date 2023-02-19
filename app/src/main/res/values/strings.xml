@@ -9,4 +9,7 @@
     <string name="et_user_name">User Name</string>
     <string name="btn_join_room">Join</string>
     <string name="tv_join_room">JOIN ROOM</string>
+    <string name="toggle_flash">Toggle Flash</string>
+    <string name="zoom_in">Zoom In</string>
+    <string name="zoom_out">Zoom Out</string>
 </resources>
